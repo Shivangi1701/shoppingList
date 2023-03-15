@@ -3,6 +3,7 @@ import CartContainer from "./components/CartContainer";
 import { useSelector, useDispatch } from "react-redux";
 import { calculateTotals } from "./features/cart/cartSlice";
 import { useEffect } from "react";
+import Modal from "./components/Modal";
 
 function App() {
   const { cartItems } = useSelector((store) => store.cart);
@@ -13,6 +14,7 @@ function App() {
   }, [cartItems]);//As cartItems changes effect(calculateTotals) will be re-executed 
   return (
     <main>
+      <Modal />
       <Navbar />
       <CartContainer />
     </main>
