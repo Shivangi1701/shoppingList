@@ -1,6 +1,7 @@
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCart } from '../features/cart/cartSlice';
+//import { clearCart } from '../features/cart/cartSlice';
+import { openModal } from '../features/modal/modalSlice';
 
 const CartContainer = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const CartContainer = () => {
                 <h2>Your Bag</h2>
             </header>
             <div>
-                {cartItems.map((item)=>{ //maps over the cartItems array
+                {cartItems.map((item) => { //maps over the cartItems array
                     return <CartItem key={item.id} {...item} />;//key prop is set to id value and spread operator (...item) passes all properties of item as seperate props to the cart item 
                 })}
             </div>
@@ -33,8 +34,12 @@ const CartContainer = () => {
                         Total <span>${total.toFixed(2)}</span>
                     </h4>
                 </div>
-                <button className='btn clear-btn'
-                onClick={() => dispatch(clearCart())}>
+                <button
+                    className='btn clear-btn'
+                    onClick={() => {
+                        dispatch(openModal())
+                    }}
+                >
                     Clear cart
                 </button>
             </footer>
