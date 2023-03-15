@@ -18,10 +18,18 @@ const cartSlice = createSlice({
         removeItem: (state, action) => {
             const itemId = action.payload;// contains ID of the item
             state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
-        },//filter method - creates new array of items withour above ID and is returned by reducer as new array
+        },//filter method - creates new array of items without above ID and is returned by reducer as new array
+        increase: (state, {payload}) => {
+            const cartItem = state.cartItems.find((item)=>item.id 
+            === payload.id)
+            cartItem.amount = cartItem.amount + 1;
+        },
+        decrease: (state, {payload}) => {
+            const cartItem = state.cartItems.find((item)=>item.id 
+            === payload.id)
+            cartItem.amount = cartItem.amount - 1;
+        },
     },
 });
-
-//console.log(cartSlice);
-export const { clearCart, removeItem } = cartSlice.actions;
+export const { clearCart, removeItem , increase, decrease } = cartSlice.actions;
 export default cartSlice.reducer;
