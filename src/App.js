@@ -16,7 +16,7 @@ function App() {
   }, [cartItems]);//As cartItems changes effect(calculateTotals) will be re-executed 
 
   useEffect(()=>{
-    dispatch(getCartItems());
+    dispatch(getCartItems('random'));
   }, []);
 
   if(isLoading){
